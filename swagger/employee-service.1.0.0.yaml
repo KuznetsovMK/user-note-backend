@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Swagger user_note
+  description: >-
+    Note service for users
+  version: 1.0.0
+servers:
+  - url: http://user_note/api
+paths:
+  /user-note/create:
+    post:
+      tags:
+        - user-note
+      summary: Create new note for user
+      operationId: createNote
+      requestBody:
+        description: User want to create new note
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserNoteRequest'
+        required: true
+      responses:
+        '200':
+          description: CREATED (successful operation)
+          content: { }
+        '400':
+          description: Incorrect input
+          content: { }
+        '404':
+          description: User is not found
+          content: { }
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    CreateUserNoteRequest:
+      type: object
+      required:
+        - userId
+      properties:
+        userId:
+          type: string
+          format: uuid
+        text:
+          type: string
+          maxLength: 5000
+          example: "He needs enterprise version of Idea. #fun, #developer, #speaker, #needs-enterprise-idea"
