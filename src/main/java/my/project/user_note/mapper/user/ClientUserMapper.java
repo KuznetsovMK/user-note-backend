@@ -6,7 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ClientUserMapper {
-
     ClientUser toEntity(CreateClientUserRequest request);
 }
 

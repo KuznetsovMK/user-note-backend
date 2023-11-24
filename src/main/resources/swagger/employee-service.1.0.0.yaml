@@ -30,7 +30,7 @@ paths:
         '409':
           description: Adaptation plan already exists
           content: { }
-      x-codegen-request-body-name: body
+      x-codegen-request-body-name: request
   /client-user-note/create:
     post:
       tags:
@@ -54,7 +54,7 @@ paths:
         '404':
           description: User is not found
           content: { }
-      x-codegen-request-body-name: body
+      x-codegen-request-body-name: request
 components:
   schemas:
     CreateClientUserRequest:

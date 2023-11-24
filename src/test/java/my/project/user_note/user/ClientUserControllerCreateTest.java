@@ -3,6 +3,7 @@ package my.project.user_note.user;
 import io.restassured.RestAssured;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import my.project.user_note.TestSetup;
 import my.project.user_note.entity.user.ClientUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RequiredArgsConstructor
-class UserClientClientControllerCreateTest {
+class ClientUserControllerCreateTest {
     @LocalServerPort
     private int localServerPort;
     @Autowired
@@ -106,7 +107,7 @@ class UserClientClientControllerCreateTest {
 
         JSONAssert.assertEquals("""
                 {
-                    "message": "Entity with login: testUserLogin already exists"
+                    "message": "Entity ClientUser with login: testUserLogin already exists"
                 }
                 """, response, false);
     }
