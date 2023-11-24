@@ -7,10 +7,10 @@ info:
 servers:
   - url: http://user_note/api
 paths:
-  /user/create:
+  /client-user/create:
     post:
       tags:
-        - user
+        - client-user
       summary: Create new user
       operationId: createUser
       requestBody:
@@ -18,7 +18,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateUserRequest'
+              $ref: '#/components/schemas/CreateClientUserRequest'
         required: true
       responses:
         '200':
@@ -31,10 +31,10 @@ paths:
           description: Adaptation plan already exists
           content: { }
       x-codegen-request-body-name: body
-  /user-note/create:
+  /client-user-note/create:
     post:
       tags:
-        - user-note
+        - client-user-note
       summary: Create new note for user
       operationId: createNote
       requestBody:
@@ -42,7 +42,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateUserNoteRequest'
+              $ref: '#/components/schemas/CreateClientUserNoteRequest'
         required: true
       responses:
         '200':
@@ -57,7 +57,7 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
-    CreateUserRequest:
+    CreateClientUserRequest:
       type: object
       required:
         - id
@@ -69,12 +69,12 @@ components:
         login:
           type: string
           example: "MyLogin123"
-    CreateUserNoteRequest:
+    CreateClientUserNoteRequest:
       type: object
       required:
-        - userId
+        - clientUserId
       properties:
-        userId:
+        clientUserId:
           type: string
           format: uuid
         text:
