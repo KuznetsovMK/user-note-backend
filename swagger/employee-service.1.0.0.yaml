@@ -7,6 +7,30 @@ info:
 servers:
   - url: http://user_note/api
 paths:
+  /user/create:
+    post:
+      tags:
+        - user
+      summary: Create new user
+      operationId: createUser
+      requestBody:
+        description: Create new user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+        required: true
+      responses:
+        '200':
+          description: CREATED (successful operation)
+          content: { }
+        '400':
+          description: Incorrect input
+          content: { }
+        '409':
+          description: Adaptation plan already exists
+          content: { }
+      x-codegen-request-body-name: body
   /user-note/create:
     post:
       tags:
@@ -33,6 +57,18 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
+    CreateUserRequest:
+      type: object
+      required:
+        - id
+        - login
+      properties:
+        id:
+          type: string
+          format: uuid
+        login:
+          type: string
+          example: "MyLogin123"
     CreateUserNoteRequest:
       type: object
       required:
