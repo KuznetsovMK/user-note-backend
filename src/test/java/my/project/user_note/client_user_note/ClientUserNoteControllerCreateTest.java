@@ -47,6 +47,7 @@ class ClientUserNoteControllerCreateTest {
     @DisplayName("Create new note")
     void test1() {
         testSetup.createUser();
+
         var userId = UUID.fromString("10000000-0000-0000-0000-000000000001");
         var text = """
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean venenatis enim vitae purus sodales vestibulum. Suspendisse laoreet augue et sem dignissim laoreet. Donec efficitur ultrices.
@@ -125,6 +126,7 @@ class ClientUserNoteControllerCreateTest {
     @DisplayName("Create new note, exceeded 5000 character limit")
     void test3() {
         testSetup.createUser();
+
         var userId = UUID.fromString("10000000-0000-0000-0000-000000000001");
         var text = "A".repeat(5001);
 

@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import my.project.user_note.mapper.note.NoteMapper;
 import my.project.user_note.repository.note.NoteRepository;
 import my.project.user_note.request.note.CreateNoteRequest;
+import my.project.user_note.request.note.UpdateNoteRequest;
 import my.project.user_note.validator.note.NoteValidator;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,11 @@ public class NoteService {
     @SneakyThrows
     public void createNote(CreateNoteRequest request) {
         noteValidator.validate(request.getText());
+        noteRepository.save(noteMapper.toEntity(request));
+    }
+
+    public void updateNote(UpdateNoteRequest request) {
+        noteValidator.validate(request);
         noteRepository.save(noteMapper.toEntity(request));
     }
 }

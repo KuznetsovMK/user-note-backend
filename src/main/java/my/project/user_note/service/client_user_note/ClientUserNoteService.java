@@ -2,12 +2,14 @@ package my.project.user_note.service.client_user_note;
 
 import com.model.CreateClientUserNoteRequest;
 import com.model.ShortNote;
+import com.model.UpdateClientUserNoteRequest;
 import lombok.RequiredArgsConstructor;
 import my.project.user_note.mapper.client_user_note.ClientUserNoteMapper;
 import my.project.user_note.mapper.note.NoteMapper;
 import my.project.user_note.repository.client_user_note.ClientUserNoteRepository;
 import my.project.user_note.request.client_user_note.CreateClientUserNoteRequestV2;
 import my.project.user_note.request.note.CreateNoteRequest;
+import my.project.user_note.request.note.UpdateNoteRequest;
 import my.project.user_note.service.note.NoteService;
 import my.project.user_note.validator.client_user_note.ClientUserNoteValidator;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,15 @@ public class ClientUserNoteService {
         return clientUserNoteRepository.findAllMyNotes(clientUserId, limit, offset).stream()
                 .map(noteMapper::toDto)
                 .toList();
+    }
+
+    public void updateNote(UpdateClientUserNoteRequest request) {
+        clientUserNoteValidator.validate(request);
+
+        noteService.updateNote(UpdateNoteRequest.builder()
+                .id(request.getNoteId())
+                .text(request.getText())
+                .build());
     }
 }
 

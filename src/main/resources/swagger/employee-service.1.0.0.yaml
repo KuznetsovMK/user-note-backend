@@ -140,6 +140,9 @@ components:
         clientUserId:
           type: string
           format: uuid
+        noteId:
+          type: string
+          format: uuid
         text:
           type: string
           maxLength: 5000
