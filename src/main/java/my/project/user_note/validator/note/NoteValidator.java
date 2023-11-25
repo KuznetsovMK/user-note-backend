@@ -8,23 +8,28 @@ import my.project.user_note.repository.note.NoteRepository;
 import my.project.user_note.request.note.UpdateNoteRequest;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class NoteValidator {
     private final NoteRepository noteRepository;
 
-    public void validate(String text) {
+    public void validateText(String text) {
         if (text.length() > 5000) {
             throw new BadFieldValueException("Exceeded 5000 character limit");
         }
     }
 
-    public void validate(UpdateNoteRequest request) {
-        if (noteRepository.findById(request.getId()).isEmpty()) {
-            throw new NotFoundException("Entity %s with id: %s not found".formatted(
-                    Note.class.getSimpleName(), request.getId()));
-        }
+    public void validateText(UpdateNoteRequest request) {
+        validateId(request.getId());
+        validateText(request.getText());
+    }
 
-        validate(request.getText());
+    public void validateId(UUID id) {
+        if (noteRepository.findById(id).isEmpty()) {
+            throw new NotFoundException("Entity %s with id: %s not found".formatted(
+                    Note.class.getSimpleName(), id));
+        }
     }
 }

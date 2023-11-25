@@ -1,8 +1,8 @@
 package my.project.user_note.service.client_user_note;
 
-import com.model.CreateClientUserNoteRequest;
-import com.model.ShortNote;
-import com.model.UpdateClientUserNoteRequest;
+import com.model.CreateClientUserNoteRequestDto;
+import com.model.ShortNoteDto;
+import com.model.UpdateClientUserNoteRequestDto;
 import lombok.RequiredArgsConstructor;
 import my.project.user_note.mapper.client_user_note.ClientUserNoteMapper;
 import my.project.user_note.mapper.note.NoteMapper;
@@ -28,7 +28,7 @@ public class ClientUserNoteService {
     private final NoteMapper noteMapper;
 
     @Transactional
-    public void createNote(CreateClientUserNoteRequest request) {
+    public void createNote(CreateClientUserNoteRequestDto request) {
         clientUserNoteValidator.validate(request);
 
         var noteId = UUID.randomUUID();
@@ -46,13 +46,13 @@ public class ClientUserNoteService {
 
     }
 
-    public List<ShortNote> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
+    public List<ShortNoteDto> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
         return clientUserNoteRepository.findAllMyNotes(clientUserId, limit, offset).stream()
                 .map(noteMapper::toDto)
                 .toList();
     }
 
-    public void updateNote(UpdateClientUserNoteRequest request) {
+    public void updateNote(UpdateClientUserNoteRequestDto request) {
         clientUserNoteValidator.validate(request);
 
         noteService.updateNote(UpdateNoteRequest.builder()

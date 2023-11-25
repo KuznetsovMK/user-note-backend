@@ -1,6 +1,6 @@
 package my.project.user_note.validator.user;
 
-import com.model.CreateClientUserRequest;
+import com.model.CreateClientUserRequestDto;
 import lombok.RequiredArgsConstructor;
 import my.project.user_note.entity.user.ClientUser;
 import my.project.user_note.exception.AlreadyExistsException;
@@ -15,7 +15,7 @@ import java.util.UUID;
 public class ClientUserValidator {
     private final ClientUserRepository clientUserRepository;
 
-    public void validate(CreateClientUserRequest request) {
+    public void validate(CreateClientUserRequestDto request) {
         if (clientUserRepository.existsByLogin(request.getLogin())) {
             throw new AlreadyExistsException("Entity %s with login: %s already exists".formatted(
                     ClientUser.class.getSimpleName(), request.getLogin()));

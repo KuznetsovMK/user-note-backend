@@ -1,9 +1,9 @@
 package my.project.user_note.controller.client_user_note;
 
 import com.api.ClientUserNoteApi;
-import com.model.CreateClientUserNoteRequest;
-import com.model.ShortNote;
-import com.model.UpdateClientUserNoteRequest;
+import com.model.CreateClientUserNoteRequestDto;
+import com.model.ShortNoteDto;
+import com.model.UpdateClientUserNoteRequestDto;
 import lombok.RequiredArgsConstructor;
 import my.project.user_note.service.client_user_note.ClientUserNoteService;
 import org.springframework.http.HttpStatus;
@@ -19,19 +19,19 @@ public class ClientUserNoteController implements ClientUserNoteApi {
     private final ClientUserNoteService clientUserNoteService;
 
     @Override
-    public ResponseEntity<Void> createNote(CreateClientUserNoteRequest request) {
+    public ResponseEntity<Void> createNote(CreateClientUserNoteRequestDto request) {
         clientUserNoteService.createNote(request);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<List<ShortNote>> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
+    public ResponseEntity<List<ShortNoteDto>> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
         var result = clientUserNoteService.findAllMyNotes(clientUserId, limit, offset);
         return ResponseEntity.ok(result);
     }
 
     @Override
-    public ResponseEntity<Void> updateNote(UpdateClientUserNoteRequest request) {
+    public ResponseEntity<Void> updateNote(UpdateClientUserNoteRequestDto request) {
         clientUserNoteService.updateNote(request);
         return new ResponseEntity<>(HttpStatus.OK);
     }

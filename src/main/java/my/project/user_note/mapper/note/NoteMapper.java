@@ -1,6 +1,7 @@
 package my.project.user_note.mapper.note;
 
-import com.model.ShortNote;
+import com.model.NoteDto;
+import com.model.ShortNoteDto;
 import my.project.user_note.entity.note.Note;
 import my.project.user_note.request.note.CreateNoteRequest;
 import my.project.user_note.request.note.UpdateNoteRequest;
@@ -12,5 +13,7 @@ public interface NoteMapper {
 
     Note toEntity(UpdateNoteRequest request);
 
-    ShortNote toDto(String text);
+    ShortNoteDto toDto(String text);
+
+    NoteDto toDto(Note note);
 }

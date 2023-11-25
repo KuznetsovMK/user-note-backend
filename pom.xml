@@ -141,8 +141,8 @@
                                 <java8>true</java8>
                                 <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
-<!--                            <generateSupportingFiles>false</generateSupportingFiles>-->
                             <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+                            <modelNameSuffix>Dto</modelNameSuffix>
                         </configuration>
                     </execution>
                 </executions>
