@@ -7,6 +7,29 @@ info:
 servers:
   - url: http://user_note/api
 paths:
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Validate client user login and return its id.
+      operationId: loginClientUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginClientUserRequest'
+        required: true
+      responses:
+        '200':
+          description: OK (successful operation)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientUser'
+        '400':
+          description: Incorrect input
+          content: { }
+      x-codegen-request-body-name: request
   /client-user/create:
     post:
       tags:
@@ -28,7 +51,7 @@ paths:
           description: Incorrect input
           content: { }
         '409':
-          description: Adaptation plan already exists
+          description: ClientUser already exists
           content: { }
       x-codegen-request-body-name: request
   /client-user-note/find-all-my-notes/{clientUserId}:
@@ -149,6 +172,14 @@ paths:
           content: { }
 components:
   schemas:
+    LoginClientUserRequest:
+      type: object
+      required:
+        - login
+      properties:
+        login:
+          type: string
+          example: "MyLogin123"
     CreateClientUserRequest:
       type: object
       required:
@@ -192,6 +223,16 @@ components:
           type: string
           maxLength: 5000
           example: "He needs enterprise version of Idea. #fun, #developer, #speaker, #needs-enterprise-idea"
+    ClientUser:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: a3e41663-159f-4af1-bf0b-0f50e25572e8
+        login:
+          type: string
+          example: "MyLogin"
     Note:
       type: object
       properties:
