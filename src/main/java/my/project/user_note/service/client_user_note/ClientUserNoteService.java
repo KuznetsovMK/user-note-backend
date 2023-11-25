@@ -1,7 +1,7 @@
 package my.project.user_note.service.client_user_note;
 
 import com.model.CreateClientUserNoteRequestDto;
-import com.model.ShortNoteDto;
+import com.model.NoteDto;
 import com.model.UpdateClientUserNoteRequestDto;
 import lombok.RequiredArgsConstructor;
 import my.project.user_note.mapper.client_user_note.ClientUserNoteMapper;
@@ -46,7 +46,7 @@ public class ClientUserNoteService {
 
     }
 
-    public List<ShortNoteDto> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
+    public List<NoteDto> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
         return clientUserNoteRepository.findAllMyNotes(clientUserId, limit, offset).stream()
                 .map(noteMapper::toDto)
                 .toList();

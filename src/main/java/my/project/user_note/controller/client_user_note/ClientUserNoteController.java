@@ -2,7 +2,7 @@ package my.project.user_note.controller.client_user_note;
 
 import com.api.ClientUserNoteApi;
 import com.model.CreateClientUserNoteRequestDto;
-import com.model.ShortNoteDto;
+import com.model.NoteDto;
 import com.model.UpdateClientUserNoteRequestDto;
 import lombok.RequiredArgsConstructor;
 import my.project.user_note.service.client_user_note.ClientUserNoteService;
@@ -25,7 +25,7 @@ public class ClientUserNoteController implements ClientUserNoteApi {
     }
 
     @Override
-    public ResponseEntity<List<ShortNoteDto>> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
+    public ResponseEntity<List<NoteDto>> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
         var result = clientUserNoteService.findAllMyNotes(clientUserId, limit, offset);
         return ResponseEntity.ok(result);
     }
