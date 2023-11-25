@@ -78,6 +78,30 @@ paths:
           description: User is not found
           content: { }
       x-codegen-request-body-name: request
+  /client-user-note/update:
+    put:
+      tags:
+        - client-user-note
+      summary: Update user note
+      operationId: updateNote
+      requestBody:
+        description: User want to update note
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientUserNoteRequest'
+        required: true
+      responses:
+        '200':
+          description: OR (successful operation)
+          content: { }
+        '400':
+          description: Incorrect input
+          content: { }
+        '404':
+          description: User is not found
+          content: { }
+      x-codegen-request-body-name: request
 components:
   schemas:
     CreateClientUserRequest:
@@ -97,6 +121,18 @@ components:
       items:
         $ref: '#/components/schemas/ShortNote'
     CreateClientUserNoteRequest:
+      type: object
+      required:
+        - clientUserId
+      properties:
+        clientUserId:
+          type: string
+          format: uuid
+        text:
+          type: string
+          maxLength: 5000
+          example: "He needs enterprise version of Idea. #fun, #developer, #speaker, #needs-enterprise-idea"
+    UpdateClientUserNoteRequest:
       type: object
       required:
         - clientUserId
