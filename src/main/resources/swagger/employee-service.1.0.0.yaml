@@ -123,6 +123,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Note'
+        '404':
+          description: Note is not found
+          content: { }
+  /note/delete/{id}:
+    delete:
+      tags:
+        - note
+      summary: Delete note by id.
+      operationId: deleteById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: a3e41663-159f-4af1-bf0b-0f50e25572e8
+      responses:
+        '200':
+          description: No Content (successful operation)
+          content: { }
+        '404':
+          description: Note is not found
+          content: { }
 components:
   schemas:
     CreateClientUserRequest:
