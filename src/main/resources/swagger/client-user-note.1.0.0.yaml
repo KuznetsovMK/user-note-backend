@@ -29,7 +29,7 @@ paths:
         '400':
           description: Incorrect input
           content: { }
-      x-codegen-request-body-name: request
+      x-codegen-request-body-name: body
   /client-user/create:
     post:
       tags:
