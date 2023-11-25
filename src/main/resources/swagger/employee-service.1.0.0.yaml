@@ -102,6 +102,27 @@ paths:
           description: User is not found
           content: { }
       x-codegen-request-body-name: request
+  /note/find-one/{id}:
+    get:
+      tags:
+        - note
+      summary: Find note by id.
+      operationId: findById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: a3e41663-159f-4af1-bf0b-0f50e25572e8
+      responses:
+        '200':
+          description: OK (successful operation)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
 components:
   schemas:
     CreateClientUserRequest:
@@ -150,6 +171,15 @@ components:
     ShortNote:
       type: object
       properties:
+        text:
+          type: string
+          example: "He needs enterprise version of Idea. #fun, #developer, #speaker, #needs-enterprise-idea"
+    Note:
+      type: object
+      properties:
+        id:
+          type: string
+          example: a3e41663-159f-4af1-bf0b-0f50e25572e8
         text:
           type: string
           example: "He needs enterprise version of Idea. #fun, #developer, #speaker, #needs-enterprise-idea"
