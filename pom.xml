@@ -120,7 +120,7 @@
                         </goals>
                         <configuration>
                             <generatorName>spring</generatorName>
-                            <inputSpec>${project.basedir}/src/main/resources/swagger/employee-service.1.0.0.yaml
+                            <inputSpec>${project.basedir}/src/main/resources/swagger/client-user-note.1.0.0.yaml
                             </inputSpec>
                             <output>${project.build.directory}/generated-sources</output>
                             <apiPackage>com.api</apiPackage>

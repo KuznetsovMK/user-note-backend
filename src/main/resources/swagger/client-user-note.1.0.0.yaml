@@ -141,7 +141,7 @@ paths:
             format: uuid
             example: a3e41663-159f-4af1-bf0b-0f50e25572e8
       responses:
-        '200':
+        '204':
           description: No Content (successful operation)
           content: { }
         '404':

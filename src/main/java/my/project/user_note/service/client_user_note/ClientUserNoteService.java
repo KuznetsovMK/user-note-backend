@@ -60,5 +60,9 @@ public class ClientUserNoteService {
                 .text(request.getText())
                 .build());
     }
+
+    public void deleteClientUserNote(UUID noteId) {
+        clientUserNoteRepository.deleteByNoteId(noteId);
+    }
 }
 

@@ -70,7 +70,7 @@ class ClientUserNoteControllerCreateTest {
         var sql = """
                 SELECT *
                 FROM client_user_note
-                         LEFT JOIN note
+                         LEFT JOIN note ON client_user_note.note_id = note.id
                 WHERE client_user_id = '10000000-0000-0000-0000-000000000001';
                 """;
 

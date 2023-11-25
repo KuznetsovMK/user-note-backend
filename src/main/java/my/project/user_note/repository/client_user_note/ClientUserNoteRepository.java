@@ -10,4 +10,6 @@ import java.util.UUID;
 @Repository
 public interface ClientUserNoteRepository extends JpaRepository<ClientUserNote, UUID>, CustomizedClientUserNoteRepository {
     Optional<ClientUserNote> findByClientUserIdAndNoteId(UUID clientUserId, UUID noteId);
+
+    void deleteByNoteId(UUID noteId);
 }
