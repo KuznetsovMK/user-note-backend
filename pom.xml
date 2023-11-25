@@ -82,6 +82,14 @@
             <artifactId>spring-boot-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -133,7 +141,7 @@
                                 <java8>true</java8>
                                 <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
-                            <generateSupportingFiles>false</generateSupportingFiles>
+<!--                            <generateSupportingFiles>false</generateSupportingFiles>-->
                             <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
                         </configuration>
                     </execution>

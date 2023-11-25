@@ -31,6 +31,29 @@ paths:
           description: Adaptation plan already exists
           content: { }
       x-codegen-request-body-name: request
+  /client-user-note/find-all-my-notes/{clientUserId}:
+    get:
+      tags:
+        - client-user-note
+      summary: Finds all note for user.
+      operationId: findAll
+      parameters:
+        - name: clientUserId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: a3e41663-159f-4af1-bf0b-0f50e25572e8
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: OK (successful operation)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindAllClientUserNoteResponse'
   /client-user-note/create:
     post:
       tags:
@@ -69,6 +92,10 @@ components:
         login:
           type: string
           example: "MyLogin123"
+    FindAllClientUserNoteResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ShortNote'
     CreateClientUserNoteRequest:
       type: object
       required:
@@ -81,3 +108,31 @@ components:
           type: string
           maxLength: 5000
           example: "He needs enterprise version of Idea. #fun, #developer, #speaker, #needs-enterprise-idea"
+    ShortNote:
+      type: object
+      properties:
+        text:
+          type: string
+          example: "He needs enterprise version of Idea. #fun, #developer, #speaker, #needs-enterprise-idea"
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        maximum: 1000
+        minimum: 0
+        default: 20
+      example: 20
+      description: The numbers of items to return.
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 2
+      description: The number of items to skip before starting to collect the result set.
