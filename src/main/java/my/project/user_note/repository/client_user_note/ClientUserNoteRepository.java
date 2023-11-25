@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface ClientUserNoteRepository extends JpaRepository<ClientUserNote, UUID> {
+public interface ClientUserNoteRepository extends JpaRepository<ClientUserNote, UUID>, CustomizedClientUserNoteRepository {
 }

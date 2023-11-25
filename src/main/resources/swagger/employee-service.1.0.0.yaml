@@ -36,7 +36,7 @@ paths:
       tags:
         - client-user-note
       summary: Finds all note for user.
-      operationId: findAll
+      operationId: findAllMyNotes
       parameters:
         - name: clientUserId
           in: path
