@@ -6,6 +6,7 @@ import com.model.NoteDto;
 import com.model.UpdateClientUserNoteRequestDto;
 import lombok.RequiredArgsConstructor;
 import my.project.user_note.service.client_user_note.ClientUserNoteService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,12 +28,17 @@ public class ClientUserNoteController implements ClientUserNoteApi {
     @Override
     public ResponseEntity<List<NoteDto>> findAllMyNotes(UUID clientUserId, Integer limit, Integer offset) {
         var result = clientUserNoteService.findAllMyNotes(clientUserId, limit, offset);
-        return ResponseEntity.ok(result);
+
+        var responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin", "*");
+
+        return ResponseEntity.ok().headers(responseHeaders).body(result);
     }
 
     @Override
     public ResponseEntity<Void> updateNote(UpdateClientUserNoteRequestDto request) {
         clientUserNoteService.updateNote(request);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
