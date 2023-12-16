@@ -3,8 +3,7 @@ WORKDIR /user-note/server
 COPY . /user-note/server/.
 RUN mvn -f /user-note/server/pom.xml clean package -Dmaven.test.skip=true
 
-FROM openjdk:17-oracle
-ARG JAR_FILE=target/user_note-0.0.1-SNAPSHOT.jar
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /user-note/server
 COPY --from=builder /user-note/server/target/*.jar /user-note/server/*.jar
 EXPOSE 8080
